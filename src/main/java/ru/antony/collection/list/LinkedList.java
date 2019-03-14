@@ -2,7 +2,7 @@ package ru.antony.collection.list;
 
 import ru.antony.collection.Collection;
 
-public class LinkedList implements Collection {
+public class LinkedList<T> implements Collection<T> {
 
     private class Elem<T> {
         T item;
@@ -18,18 +18,22 @@ public class LinkedList implements Collection {
 
 
     private int size;
-    private Elem<Object> first;
-    private Elem<Object> last;
+    private Elem<T> first;
+    private Elem<T> last;
 
 
+    public LinkedList() {
+        this.size = 0;
 
-    public void add(Object object) {
+    }
+
+    public void add(T object) {
         if(first == null){
-            first = new Elem<Object>(object, null, null);
+            first = new Elem<T>(object, null, null);
             last = first;
             size++;
         } else {
-            Elem<Object> local = new Elem<Object>(object, null, last);
+            Elem<T> local = new Elem<T>(object, null, last);
             last.next = local;
             last = local;
             size++;
@@ -40,12 +44,12 @@ public class LinkedList implements Collection {
 
     }
 
-    public Object[] toArray() {
-        Object[] array = new Object[size];
+    public T[] toArray() {
+        T[] array = (T[])(new Object[size]);
 
         array[0] = first.item;
 
-        Elem<Object> local = first;
+        Elem<T> local = first;
         for(int i = 1; i < size; i++ ){
             local = local.next;
             array[i] = local.item;
