@@ -12,4 +12,7 @@ public interface Collection<T> {
 
     int size();
 
+    T getFirst();
+
+    T getLast();
 }

@@ -65,4 +65,12 @@ public class LinkedList<T> implements Collection<T> {
     public int size() {
         return size;
     }
+
+    public T getFirst() {
+        return first.item;
+    }
+
+    public T getLast() {
+        return last.item;
+    }
 }
