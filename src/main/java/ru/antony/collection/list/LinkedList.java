@@ -2,6 +2,8 @@ package ru.antony.collection.list;
 
 import ru.antony.collection.Collection;
 
+import java.lang.reflect.Array;
+
 public class LinkedList<T> implements Collection<T> {
 
     private class Elem<T> {
@@ -27,6 +29,12 @@ public class LinkedList<T> implements Collection<T> {
 
     }
 
+    private T[] getTypeArray(Class<T> c, int s) {
+        @SuppressWarnings("unchecked")
+        T[] a = (T[]) Array.newInstance(c, s);
+        return a;
+    }
+
     public void add(T object) {
         if(first == null){
             first = new Elem<T>(object, null, null);
@@ -45,7 +53,7 @@ public class LinkedList<T> implements Collection<T> {
     }
 
     public T[] toArray() {
-        T[] array = (T[])(new Object[size]);
+        T[] array = getTypeArray((Class<T>) first.item.getClass(), size);
 
         array[0] = first.item;
 

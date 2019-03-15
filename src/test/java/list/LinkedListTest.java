@@ -55,5 +55,21 @@ public class LinkedListTest {
         assertEquals(stringArray[2], "Piter");
         assertEquals(stringArray[3], "dddd");
 
+        Collection<Integer> list2 = new LinkedList<Integer>();
+
+        list2.add(new Integer(10));
+        list2.add(new Integer(15));
+        list2.add(new Integer(69));
+        list2.add(new Integer(100));
+        list2.add(new Integer(-10));
+
+        Integer[] integerArray = list2.toArray();
+
+        assertEquals(integerArray[0], new Integer(10));
+        assertEquals(integerArray[1], new Integer(15));
+        assertEquals(integerArray[2], new Integer(69));
+        assertEquals(integerArray[3], new Integer(100));
+        assertEquals(integerArray[4], new Integer(-10));
+
     }
 }
