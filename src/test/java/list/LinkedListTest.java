@@ -72,4 +72,22 @@ public class LinkedListTest {
         assertEquals(integerArray[4], new Integer(-10));
 
     }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void getTest(){
+
+        Collection<String> list = new LinkedList();
+        list.add("first");
+        list.add("second");
+        list.add("Piter");
+        list.add("dddd");
+
+        assertEquals("first", list.get(0));
+        assertEquals("second", list.get(1));
+        assertEquals("Piter", list.get(2));
+        assertEquals("dddd", list.get(3));
+
+        String error = list.get(4);
+    }
+
 }

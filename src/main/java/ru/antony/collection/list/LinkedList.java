@@ -49,7 +49,9 @@ public class LinkedList<T> implements Collection<T> {
     }
 
     public void clear() {
-
+        first = null;
+        last = null;
+        size = 0;
     }
 
     public T[] toArray() {
@@ -67,6 +69,10 @@ public class LinkedList<T> implements Collection<T> {
     }
 
     public boolean isEmpty() {
+        if(first == null){
+            return true;
+        }
+
         return false;
     }
 
@@ -80,5 +86,20 @@ public class LinkedList<T> implements Collection<T> {
 
     public T getLast() {
         return last.item;
+    }
+
+    public T get(int index) {
+
+        if(index >= size || index < 0){
+            throw new IndexOutOfBoundsException();
+        }
+
+        Elem<T> local = first;
+
+        for(int i = 0; i < index; i++){
+            local = local.next;
+        }
+
+        return local.item;
     }
 }

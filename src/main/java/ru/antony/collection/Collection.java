@@ -15,4 +15,6 @@ public interface Collection<T> {
     T getFirst();
 
     T getLast();
+
+    T get(int index);
 }
