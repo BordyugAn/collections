@@ -1,33 +1,39 @@
 package list;
 
+import org.junit.Before;
 import org.junit.Test;
 import ru.antony.collection.Collection;
 import ru.antony.collection.list.LinkedList;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class LinkedListTest {
 
+    Collection<String> list;
+
+    @Before
+    public void before(){
+        list = new LinkedList();
+        list.add("first");
+        list.add("second");
+        list.add("Piter");
+        list.add("dddd");
+    }
+
     @Test
     public void initListTest(){
 
-        Collection<String> list = new LinkedList();
-        list.add("first");
-        list.add("second");
-        assertTrue(list.size() == 2);
+        assertTrue(list.size() == 4);
 
     }
 
 
     @Test
     public void getFirstAndLastTest(){
-
-        Collection<String> list = new LinkedList();
-        list.add("first");
-        list.add("second");
-        list.add("Piter");
-        list.add("dddd");
 
         String first = list.getFirst();
         String last = list.getLast();
@@ -40,12 +46,6 @@ public class LinkedListTest {
 
     @Test
     public void toArrayTest(){
-
-        Collection<String> list = new LinkedList();
-        list.add("first");
-        list.add("second");
-        list.add("Piter");
-        list.add("dddd");
 
         String[] stringArray = list.toArray();
 
@@ -76,18 +76,22 @@ public class LinkedListTest {
     @Test(expected = IndexOutOfBoundsException.class)
     public void getTest(){
 
-        Collection<String> list = new LinkedList();
-        list.add("first");
-        list.add("second");
-        list.add("Piter");
-        list.add("dddd");
-
         assertEquals("first", list.get(0));
         assertEquals("second", list.get(1));
         assertEquals("Piter", list.get(2));
         assertEquals("dddd", list.get(3));
 
         String error = list.get(4);
+    }
+
+    @Test
+    public void testLambda(){
+        List<String> list2 = new ArrayList<>();
+        list2.add("firstFromList2");
+        list2.add("secondFromList2");
+
+        list2.forEach(list::add);
+        assertTrue(list.size() == 6);
     }
 
 }

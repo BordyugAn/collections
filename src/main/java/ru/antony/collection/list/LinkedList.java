@@ -6,6 +6,7 @@ import java.lang.reflect.Array;
 
 public class LinkedList<T> implements Collection<T> {
 
+
     private class Elem<T> {
         T item;
         Elem<T> next;
@@ -88,8 +89,7 @@ public class LinkedList<T> implements Collection<T> {
         return last.item;
     }
 
-    public T get(int index) {
-
+    private Elem<T> getElem(int index){
         if(index >= size || index < 0){
             throw new IndexOutOfBoundsException();
         }
@@ -100,6 +100,35 @@ public class LinkedList<T> implements Collection<T> {
             local = local.next;
         }
 
-        return local.item;
+        return local;
+    }
+
+    public T get(int index) {
+
+        return getElem(index).item;
+    }
+
+    public void delete(int index) {
+
+        Elem<T> local = getElem(index);
+
+        Elem<T> prev = local.prev;
+        Elem<T> next = local.next;
+
+        if(index == 0){
+            first = local.next;
+        }
+
+        if(index == size - 1){
+            last = local.prev;
+        }
+
+        if(prev != null){
+            prev.next = next;
+        }
+
+        if(next != null){
+            next.prev = prev;
+        }
     }
 }

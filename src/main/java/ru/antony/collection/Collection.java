@@ -17,4 +17,6 @@ public interface Collection<T> {
     T getLast();
 
     T get(int index);
+
+    void delete(int index);
 }
